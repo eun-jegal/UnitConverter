@@ -15,7 +15,7 @@ class ConversionLocalDataSourceImpl(
         conversionDAO.delete(result)
     }
 
-    override suspend fun getSavedResults(): Flow<List<ConversionResult>> {
+    override fun getSavedResults(): Flow<List<ConversionResult>> {
         return conversionDAO.getSavedResults()
     }
 }

@@ -15,5 +15,5 @@ interface ConversionDAO {
     suspend fun delete(result: ConversionResult)
 
     @Query("SELECT * FROM conversion_result")
-    suspend fun getSavedResults(): Flow<List<ConversionResult>>
+    fun getSavedResults(): Flow<List<ConversionResult>>
 }
