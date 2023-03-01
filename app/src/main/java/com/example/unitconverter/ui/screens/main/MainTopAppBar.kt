@@ -1,4 +1,4 @@
-package com.example.unitconverter.ui.screens
+package com.example.unitconverter.ui.screens.main
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
