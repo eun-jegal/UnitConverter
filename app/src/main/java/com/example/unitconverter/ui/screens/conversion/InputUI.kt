@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -24,6 +25,9 @@ import androidx.compose.ui.unit.toSize
 
 @Composable
 fun InputUI(
+    inputNumber: MutableState<String>,
+    inputUnit: MutableState<String>,
+    unitList: List<String>,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -33,20 +37,23 @@ fun InputUI(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        NumberInputField()
-        UnitDropDownMenu()
+        NumberInputField(inputNumber, modifier)
+        UnitDropDownMenu(inputUnit, unitList, modifier)
     }
 }
 
 @Composable
-fun NumberInputField(modifier: Modifier = Modifier) {
+fun NumberInputField(
+    inputNumber: MutableState<String>,
+    modifier: Modifier = Modifier
+) {
     OutlinedTextField(
         modifier = modifier
             .fillMaxWidth(0.65f)
             .fillMaxHeight(),
-        value = "",
+        value = inputNumber.value,
         onValueChange = {
-
+            inputNumber.value = it
         },
         keyboardOptions = KeyboardOptions(
             capitalization = KeyboardCapitalization.None,
@@ -61,21 +68,28 @@ fun NumberInputField(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun UnitDropDownMenu(modifier: Modifier = Modifier) {
+fun UnitDropDownMenu(
+    inputUnit: MutableState<String>,
+    unitList: List<String>,
+    modifier: Modifier = Modifier
+) {
     var expanded by remember { mutableStateOf(false) }
     var dropdownMenuTextSize by remember { mutableStateOf(Size.Zero) }
+    var selectedUnit by rememberSaveable { inputUnit }
 
     val expandIcon = if (expanded) {
         Icons.Filled.KeyboardArrowUp
     } else {
         Icons.Filled.KeyboardArrowDown
     }
-    Column(modifier = modifier
-        .fillMaxWidth(0.3f)
-        .fillMaxHeight()) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth(0.3f)
+            .fillMaxHeight()
+    ) {
         OutlinedTextField(
-            value = "",
-            onValueChange = { },
+            value = selectedUnit,
+            onValueChange = { selectedUnit = it },
             textStyle = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Medium),
             modifier = modifier
                 .fillMaxWidth()
@@ -95,7 +109,18 @@ fun UnitDropDownMenu(modifier: Modifier = Modifier) {
             modifier = modifier.width(with(LocalDensity.current) { dropdownMenuTextSize.width.toDp() })
         )
         {
-
+            unitList.forEach { unit ->
+                DropdownMenuItem(onClick = {
+                    selectedUnit = unit
+                    expanded = false
+                }) {
+                    Text(
+                        text = unit,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+            }
         }
     }
 }

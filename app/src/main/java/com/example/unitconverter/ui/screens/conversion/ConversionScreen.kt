@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
@@ -15,6 +16,9 @@ import com.example.unitconverter.ui.screens.SubTopAppBar
 @Composable
 fun ConversionScreen(
     category: String,
+    inputNumber: MutableState<String>,
+    inputUnit: MutableState<String>,
+    unitList: List<String>,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -31,7 +35,7 @@ fun ConversionScreen(
                 .padding(16.dp)
         ) {
 
-            InputUI(modifier)
+            InputUI(inputNumber, inputUnit, unitList, modifier)
             OutputUI("", modifier, listOf())
         }
     }
