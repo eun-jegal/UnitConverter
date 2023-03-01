@@ -1,6 +1,7 @@
 package com.example.unitconverter.ui.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -41,40 +42,37 @@ val conversions = listOf(
 fun MainScreen(
     modifier: Modifier = Modifier
 ) {
-    Surface(
+    Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp),
-        color = colorResource(id = R.color.app_background)
+            .background(colorResource(id = R.color.app_background))
+            .padding(16.dp)
     ) {
-        Column(modifier = modifier.fillMaxSize()) {
-            Text(
-                modifier = modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center,
-                text = "Pick a category",
-                style = TextStyle(
-                    color = Color.Black,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 20.sp
-                )
+        Text(
+            modifier = modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            text = "Pick a category",
+            style = TextStyle(
+                color = Color.Black,
+                fontWeight = FontWeight.Medium,
+                fontSize = 20.sp
             )
-            Spacer(modifier = Modifier.height(16.dp))
-            LazyVerticalGrid(
-                cells = GridCells.Fixed(3),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                content = {
-                    items(conversions.size) { index ->
-                        CategoryCard(
-                            modifier = modifier,
-                            drawableId = conversions[index].first,
-                            title = conversions[index].second
-                        )
-                    }
-                })
-        }
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        LazyVerticalGrid(
+            cells = GridCells.Fixed(3),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            content = {
+                items(conversions.size) { index ->
+                    CategoryCard(
+                        modifier = modifier,
+                        drawableId = conversions[index].first,
+                        title = conversions[index].second
+                    )
+                }
+            })
     }
-
 }
 
 @Composable
