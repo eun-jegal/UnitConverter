@@ -7,36 +7,39 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.unitconverter.R
 import com.example.unitconverter.ui.screens.SubTopAppBar
+import com.example.unitconverter.ui.viewmodel.ConversionViewModel
 
 @Composable
 fun BookmarksScreen(
-    modifier: Modifier = Modifier,
-    bookmarkedList: List<String>
+    viewModel: ConversionViewModel,
+    onNavigateToMainScreen: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
+    val resultList = viewModel.resultList.collectAsState(initial = emptyList())
+
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(colorResource(id = R.color.app_background))
     ) {
         SubTopAppBar(appbarTitle = "Bookmark") {
-
+            onNavigateToMainScreen()
         }
         Column(
             modifier = modifier
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            LazyColumn(content = {
-                items(bookmarkedList.size) {
+            LazyColumn{
 
-                }
-            })
+            }
         }
     }
 }

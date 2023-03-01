@@ -14,7 +14,7 @@ import com.example.unitconverter.R
 
 @Composable
 fun MainTopAppBar(
-    onClickBookmark: () -> Unit
+    onNavigateToBookmarkScreen: () -> Unit
 ) {
     TopAppBar(
         backgroundColor = colorResource(id = R.color.color_primary),
@@ -22,7 +22,7 @@ fun MainTopAppBar(
             Text(text = "Unit Converter", color = Color.White)
         },
         actions = {
-            IconButton(onClick = { onClickBookmark() }) {
+            IconButton(onClick = { onNavigateToBookmarkScreen() }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_baseline_bookmarks_24),
                     tint = Color.White,

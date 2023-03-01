@@ -18,7 +18,7 @@ class ConversionRepositoryImpl(
         localDataSource.deleteResult(result)
     }
 
-    override suspend fun getSavedResults(): Flow<List<ConversionResult>> {
+    override fun getSavedResults(): Flow<List<ConversionResult>> {
         return localDataSource.getSavedResults()
     }
 
