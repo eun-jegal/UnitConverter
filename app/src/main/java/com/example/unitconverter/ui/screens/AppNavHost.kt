@@ -24,6 +24,7 @@ fun AppNavHost(
             composable(route = "main_screen") {
                 MainScreen(
                     onNavigateToConversionScreen = {
+                        viewModel.updateConversionCategory(it)
                         navController.navigate("conversion_screen/$it")
                     },
                     onNavigateToBookmarkScreen = {

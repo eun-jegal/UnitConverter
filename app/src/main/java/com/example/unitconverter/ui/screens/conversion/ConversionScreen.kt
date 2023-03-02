@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -34,8 +35,24 @@ fun ConversionScreen(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            InputUI(viewModel.inputNumber, viewModel.inputUnit, viewModel.unitList, modifier)
-            OutputUI("", modifier, listOf())
+            InputUI(
+                inputNumber = viewModel.inputNumber,
+                inputUnit = viewModel.inputUnit,
+                unitList = viewModel.unitList,
+                calculate = {
+                    viewModel.updateCalculatedResults()
+                },
+                modifier = modifier
+            )
+            OutputUI(
+                inputNumber = viewModel.inputNumber,
+                inputUnit = viewModel.inputUnit,
+                resultList = viewModel.calculatedResults.observeAsState(initial = emptyList()),
+                onClickSave = {
+                    viewModel.saveResult(it)
+                },
+                modifier = modifier
+            )
         }
     }
 

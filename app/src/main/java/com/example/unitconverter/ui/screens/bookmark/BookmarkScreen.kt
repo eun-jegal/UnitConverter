@@ -22,7 +22,7 @@ fun BookmarksScreen(
     onNavigateToMainScreen: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val resultList = viewModel.resultList.collectAsState(initial = emptyList())
+    val resultList = viewModel.savedResultsFromDB.collectAsState(initial = emptyList())
 
     Column(
         modifier = modifier
