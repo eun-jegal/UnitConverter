@@ -52,7 +52,7 @@
    </ul>
 </ul>
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/57670625/221630274-a9214a21-5908-4725-b799-800197555750.jpg"/>
+   <img src="https://user-images.githubusercontent.com/57670625/222870908-e4743972-79e5-455a-84f3-1d796501f5bb.jpg"/>
 </p>
 
 <h3>Architecture Overview</h3>
@@ -60,7 +60,7 @@
 
 <h3>UI Layer</h3>
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/57670625/221978991-caae1ffb-69e2-48c3-b9fd-0262c6cce87b.jpg"/>
+   <img src="https://user-images.githubusercontent.com/57670625/222870907-463300a3-1dbf-4113-a127-58f0c7393b41.jpg" width="85%"/>
 </p>
 <p>UI layer displays the application data and serves as the primary point for user interactions. Whenever the app data changes, the UI should update to reflect changes made by either user interaction or external input.</p>
 <ul>
@@ -69,16 +69,9 @@
   <li>UI elements request actions to ViewModel and observer ViewModel's livedatas to automatically update screens</li>
 </ul>
 
-<h3>Domain Layer</h3>
-<p align="center">
-   <img src="https://user-images.githubusercontent.com/57670625/221953741-1c9dd925-1dc3-47d7-a6c2-d50c2efd0fba.jpg"/>
-</p>
-<p>Domain layer is optional layer for the modern architectural pattern. However, when the app is a large scale app and has complex functionalities, the domain layer helps to avoid code duplications and improves readability of codes. Top News has seven main use cases and these classes fit between ViewModel and the data layer(Repository).</p>
-
-
 <h3>Data Layer</h3>
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/57670625/221978988-f2193bf4-f1f1-43f8-a021-34ee6cd0f500.jpg"/>
+   <img src="https://user-images.githubusercontent.com/57670625/222870906-6f8655f4-6c8b-4504-9820-50926dc73377.jpg" width="85%"/>
 </p>
 <p>Data layer is reponsible for containing application data and business logics. The data layer is consisted of repositories and data sources. It is important to keep each repository as a single source of truth.</p>
 <ul>
